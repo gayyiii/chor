@@ -1,0 +1,171 @@
+ 2d shapes
+package ShapeDemo; 
+import java.awt.Color; 
+import java.awt.Graphics; 
+import javax.swing.JFrame; 
+import javax.swing.JPanel; 
+public class ShapeDemo extends JPanel { 
+// ✅ This method draws shapes on the screen 
+@Override 
+protected void paintComponent(Graphics g) { 
+super.paintComponent(g); // Clears the panel before drawing 
+// Blue rectangle 
+g.setColor(Color.BLUE); 
+g.fillRect(50, 50, 200, 100); 
+// Red circle 
+g.setColor(Color.RED); 
+g.fillOval(300, 50, 100, 100); 
+// Green line 
+g.setColor(Color.GREEN); 
+g.drawLine(50, 200, 350, 200); 
+// Magenta triangle 
+int[] xPoints = {200, 250, 300}; 
+int[] yPoints = {250, 150, 250}; 
+g.setColor(Color.MAGENTA); 
+g.fillPolygon(xPoints, yPoints, 3); 
+} 
+// ✅ The main() method starts the program 
+public static void main(String[] args) { 
+JFrame frame = new JFrame("2D Shapes Demo"); 
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+frame.setSize(500, 400); 
+frame.add(new ShapeDemo()); 
+frame.setVisible(true); 
+} 
+}
+
+
+font cha 
+
+package colorfontdemo; 
+import java.awt.Color; 
+import java.awt.Font; 
+import java.awt.Graphics; 
+import javax.swing.JFrame; 
+import javax.swing.JPanel; 
+ 
+public class ColorAndFontDemo extends JPanel { 
+ 
+    // Override the paintComponent method to draw with colors and fonts 
+    @Override 
+    protected void paintComponent(Graphics g) { 
+        super.paintComponent(g); // Call the superclass method to ensure proper rendering 
+ 
+        // Set background color 
+        setBackground(Color.WHITE); 
+ 
+        // Draw a colored rectangle with different border and fill color 
+        g.setColor(Color.CYAN); // Set fill color 
+        g.fillRect(50, 50, 200, 100); // x, y, width, height 
+         
+        g.setColor(Color.DARK_GRAY); // Set border color 
+        g.drawRect(50, 50, 200, 100); // x, y, width, height (border) 
+ 
+        // Draw text with different font styles and sizes 
+        g.setColor(Color.RED); // Set color for text 
+        g.setFont(new Font("Serif", Font.BOLD, 20)); // Set font (Serif, Bold, Size 20) 
+        g.drawString("This is a BOLD Serif Font", 50, 200); 
+ 
+        g.setColor(Color.BLUE); // Set color for next text 
+        g.setFont(new Font("SansSerif", Font.ITALIC, 24)); // Set font (SansSerif, Italic, Size 24) 
+        g.drawString("This is an ITALIC SansSerif Font", 50, 250); 
+ 
+        g.setColor(Color.GREEN); // Set color for next text 
+        g.setFont(new Font("Monospaced", Font.PLAIN, 18)); // Set font (Monospaced, Plain, Size 18) 
+        g.drawString("This is a PLANE Monospaced Font", 50, 300); 
+         
+        // Draw a string with custom font and size 
+        g.setColor(Color.MAGENTA); 
+        g.setFont(new Font("Arial", Font.PLAIN, 30)); // Set font (Arial, Plain, Size 30) 
+        g.drawString("Magenta Text in Arial", 50, 350); 
+    } 
+ 
+    // Main method to create the frame and display the panel 
+    public static void main(String[] args) { 
+        // Create a frame to hold the panel 
+        JFrame frame = new JFrame("Color and Font Demo"); 
+ 
+        // Set up the frame 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        frame.setSize(600, 500); // Width and height of the window 
+ 
+        // Create an instance of the ColorAndFontDemo panel and add it to the frame 
+        ColorAndFontDemo panel = new ColorAndFontDemo(); 
+frame.add(panel); 
+// Make the frame visible 
+frame.setVisible(true); 
+} 
+}  
+ class program
+ package project;
+class Outer
+{
+	int outer_x=100;
+	void test()
+	{
+		inner inner=new inner();
+		inner.display();
+	}
+	static int count=0;
+	Outer()
+	{
+		count++;
+		System.out.println(count);
+		test();
+	}
+	class inner
+	{
+		void display()
+		{
+			System.out.println("Display:outer_=" +outer_x);
+		}
+		
+	}
+	
+}
+
+public class assignment {
+public static void main(String[]agrs)
+{
+	Outer o1 = new Outer();
+    Outer o2 = new Outer();
+    Outer o3 = new Outer();
+}
+}
+ 
+ polymorphhism 
+ 
+ package mca.firstyear;
+public class assignment4 {
+static class Animal {
+public void move() {
+System.out.println("Animals can move");
+}
+}
+static class Dog extends Animal {
+// Method Overriding
+public void move() {
+System.out.println("Dogs can walk and run");
+}
+// Method Overloading
+void add(int a, int b) {
+int s = a + b;
+System.out.println("Sum=" + s);
+}
+void add(int a, int b, int c) {
+int s = a + b + c;
+System.out.println("Sum=" + s);
+}
+}
+public static class Assignment4 {
+public static void main(String[] args) {
+Animal a = new Animal();
+Animal b = new Dog();
+a.move();
+b.move();
+Dog d = new Dog();
+d.add(10, 20);
+d.add(10, 20, 30);
+}
+}
+}
