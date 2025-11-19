@@ -1,0 +1,312 @@
+#1 Numeric built-in functions
+numbers=[10,20,30,40,50]
+
+print("Numbers:",numbers)
+print("Sum of numbers:",sum(numbers))
+print("Maximum of numbers:",max(numbers))
+print("Manimum of numbers:",min(numbers))
+print("Length of list:",len(numbers))
+print("Average of numbers:",sum(numbers)/len(numbers))
+
+print()
+
+#2 String built-in functions
+text = "Hello Python Programming"
+
+print("Original text:",text)
+print("Uppercase:",text.upper())
+print("Lowercase:",text.lower())
+print("Title:",text.title())
+print("Number of occurances of'o':",text.count('o'))
+print("Does text start with 'Hello'?",text.startswith("Hello"))
+print("Does text end with 'ing'?",text.endswith("ing"))
+
+print()
+
+#3 Type conversation built-in functions
+num_str ="100"
+num_int = int(num_str)
+num_float = float(num_str)
+
+print("String:",num_str)
+print("Converted to integer:",num_int)
+print("Converted to float:",num_float)
+print("Converted back to string:",str(num_int))
+
+print()
+
+#4 Mathematical built-in functions
+import math
+x=25
+print("Square root of",x,"is:",math.sqrt(x))
+print("Power(2^3):",pow(2,3))
+print("Absolute value of -15:",abs(-15))
+print("Round of 3.567:",round(3.567,2))
+
+print()
+
+#5 Other general built-in functions
+names=["Alice","Bob","Charlie"]
+print("Names list:",names)
+print("sorted names:",sorted(names))
+print("Reversed names:",list(reversed(names)))
+
+#1 using lambda to define small,unnamed functions
+
+add = lambda a,b: a+b
+square = lambda x: x**2
+
+print("sum of 5 and 3:",add(5,3))
+print("square of 6:",square(6))
+
+print()
+
+#2 Using filter() with lambda to filter even numbers from a list
+numbers = [10,15,25,30,35,40]
+
+even_numbers = list(filter(lambda x:x%2==0,numbers))
+print("Original list:",numbers)
+print("Even numbers(using filter):",even_numbers)
+print()
+
+#3 Using filter()with lambda to find numbers greater than 20
+greater_than_20 = list(filter(lambda x:x>20,numbers))
+print("Numbers greater than 20:",greater_than_20)
+print()
+
+#4 Using filter() with lambda to extract words longer than 3 letters
+word =["cat","tiger","bat","elephant","dog"]
+long_words = list(filter(lambda word:len(word)>3,word))
+print("Original words:",word)
+print("Words with more than 3 letters:",long_words)
+
+map and list
+# List of numbers
+from Anonymous_fun7 import even_numbers
+
+numbers = [1,2,3,4,5,6,7,8,9,10]
+
+#----------1.map() Examples---------
+
+#1.1 Using map() to square each number in the list
+squared_numbers= list(map(lambda x:x**2,numbers))
+print("Squared numbers using map():",squared_numbers)
+
+#1.2 Using map() to convert numbers to their string representation
+string_numbers = list(map(str,numbers))
+print("string representation of numbers using map():",string_numbers)
+
+#1.3 Using map() with multiple iterables to sum two lists elements-wise
+list1 = [1,2,3,4,5]
+list2 = [10,20,30,40,50]
+summed_list = list(map(lambda x,y:x+y,list1,list2))
+print("Sum of elements in list1 and list2 using map():",summed_list)
+
+#---------2.List Compression Examples----------
+
+#2.1 Using List Comprehension to create a list of cubes of numbers
+cubed_numbers =[x**3 for x in numbers]
+print("Cubed numbers using list comprehension:",cubed_numbers)
+
+#2.2 Using List Comprehension to get only even numbers
+even_numbers = [x for x in numbers if x%2==0]
+print("List of even numbers using list comprehension:", even_numbers)
+
+
+#-----------3.Dictionary Examples--------------
+
+#3.1 Using a Dictionary to map each number to its square and cube
+number_dict={x:{"square":x**2,"cube":x**3} for x in numbers}
+print("Dictionary mapping numbers to their squares and cubes:")
+for num,values in number_dict.items():
+    print(f"{num}->Square:{values['square']},Cube:{values['cube']}")
+
+#3.2 Using a Dictionary to create a lookup of even and odd numbers
+parity_dict= {x:("even"if x%2==0 else "odd")for x in numbers}
+print("Dictionary mappinng numbers to their parity(even/odd):")
+for num,parity in parity_dict.items():
+    print(f"{num}is {parity}")
+
+# 1 Defining a class named 'Student'
+
+class Student:
+    # Constructor (automatically called when an object is created)
+    def __init__(self, name, roll_no, marks):
+        self.name = name
+        self.roll_no = roll_no
+        self.marks = marks
+
+    # Method to display student details
+    def display_details(self):
+        print("Student Name:", self.name)
+        print("Student Roll No:", self.roll_no)
+        print("Student Marks:", self.marks)
+        print()
+
+    # Method to calculate grade based on marks
+    def calculate_grade(self):
+        if self.marks >= 75:
+            return "A"
+        elif self.marks >= 60:
+            return "B"
+        elif self.marks >= 40:
+            return "C"
+        else:
+            return "Fail"
+
+
+# Creating objects of the class Student
+student1 = Student("John", 101, 85)
+student2 = Student("Sara", 102, 67)
+student3 = Student("Tom", 103, 35)
+
+# Displaying student details
+print("======== Student Details =========")
+student1.display_details()
+student2.display_details()
+student3.display_details()
+
+# Displaying grades for each student
+print("======== Student Grades =========")
+print(student1.name, "Grade:", student1.calculate_grade())
+print(student2.name, "Grade:", student2.calculate_grade())
+print(student3.name, "Grade:", student3.calculate_grade())
+
+# Importing array module
+import array
+
+# 1. Creating an array of integers
+numbers = array.array('i', [10, 20, 30, 40, 50])
+print("Original Array:", numbers.tolist())   # tolist() displays it like a normal list
+print()
+
+# 2. Accessing elements using index
+print("First element:", numbers[0])
+print("Last element:", numbers[-1])
+print()
+
+# 3. Adding elements to array
+numbers.append(60)                 # Adds one element at end
+numbers.extend([70, 80])           # Adds multiple elements
+print("After adding elements:", numbers.tolist())
+print()
+
+# 4. Inserting an element at specific position
+numbers.insert(2, 25)              # Insert 25 at index 2
+print("After inserting 25 at index 2:", numbers.tolist())
+print()
+
+# 5. Removing elements
+numbers.remove(40)                 # Removes first occurrence of 40
+print("After removing 40:", numbers.tolist())
+print()
+
+# 6. Popping last element
+numbers.pop()                      # Removes last element
+print("After popping last element:", numbers.tolist())
+print()
+
+# 7. Iterating through array
+print("Elements in array:")
+for num in numbers:
+    print(num, end=" ")
+print("\n")
+
+# 8. Finding length and sum
+print("Length of array:", len(numbers))
+print("Sum of array elements:", sum(numbers))
+print()
+
+#9. Slicing the array
+print("Sliced array(index 1 to 4):",numbers[1:5].tolist())
+
+#writing data to the file
+
+file = open("mydata.txt","w")
+L =["Pyhon is powerful.\n","JavaScript is popular.\n","C is fast.\n"]
+
+#writing a line  and thenmultiple lines from the list L
+file.write("Programmning language are fun.\n")
+file.writelines(L)
+file.close()
+
+#Reading data from the file
+file = open("mydata.txt","r+")
+print(file.read())
+print("Reading complete file using read()")
+print()
+
+#Moving pointer back
+file.seek(5)
+
+print("Output of readline()from position 5:")
+print(file.readline())
+print()
+
+file.seek(0)
+
+#Showing difference between read()and readlines()
+print("Output of read(12):")
+print(file.read(12))
+print()
+
+file.seek(0)
+
+print("Output of readline(10):")
+print(file.readline(10))
+print()
+
+file.seek(20)
+print("Output of readline():")
+print(file.readline())
+print()
+file.close()
+
+#Appending data to file
+file=open("mydata.txt","a")
+file.write("C++is widely used.\n")
+file.write("Ruby is expressive.\n")
+file.close()
+
+#Read again to verify appended content
+file=open("mydata.txt","r")
+print("Content after appending new linew:")
+print(file.read())
+file.close() 
+
+
+
+ math_module nav dyych
+def add(a,b):
+    return a+b
+def multiply(a,b):
+    return a*b
+
+
+
+
+
+
+greet_module.py nav dyych 
+def say_hello(name):
+    return f"Hello,{name}!"
+
+def say_bye(name):
+    return f"Goodbye,{name}!"
+
+
+
+
+
+
+Main.py dyych
+from my_package import math_module,greet_module
+
+print("Addition:",math_module.add(10,5))
+print("Multiplacation:",math_module.multiply(4,3))
+
+print(greet_module.say_hello("Sonal"))
+print(greet_module.say_bye("Sonal"))
+
+
+
