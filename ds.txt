@@ -1,0 +1,149 @@
+ Practical 5: Write a program to implement Encode categorical variables using One-Hot Encoding and Label
+Encoding with Pandas and Scikit-learn.
+
+
+# Import necessary libraries
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
+# Step 1: Create a sample dataset
+data = {
+    'City': ['Mumbai', 'Delhi', 'Chennai', 'Delhi', 'Mumbai'],
+    'Gender': ['Male', 'Female', 'Female', 'Male', 'Male']
+}
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+
+# ---------------------------
+# LABEL ENCODING
+# ---------------------------
+
+# Step 2: Create LabelEncoder object
+label_encoder = LabelEncoder()
+
+# Step 3: Apply label encoding on 'City' column
+df['City_Label'] = label_encoder.fit_transform(df['City'])
+
+# Step 4: Apply label encoding on 'Gender' column
+df['Gender_Label'] = label_encoder.fit_transform(df['Gender'])
+
+print("\nAfter Label Encoding:")
+print(df)
+
+# ---------------------------
+# ONE-HOT ENCODING (using Pandas)
+# ---------------------------
+
+# Step 5: Apply One-Hot Encoding using pandas get_dummies()
+df_onehot = pd.get_dummies(df, columns=['City', 'Gender'])
+
+print("\nAfter One-Hot Encoding (Pandas get_dummies):")
+print(df_onehot)
+
+# ---------------------------
+# ONE-HOT ENCODING (using Scikit-learn)
+# ---------------------------
+
+# Step 6: Apply OneHotEncoder from sklearn
+encoder = OneHotEncoder(sparse_output=False)
+encoded_array = encoder.fit_transform(df[['City']])
+
+# Step 7: Convert to DataFrame and concatenate
+encoded_df = pd.DataFrame(encoded_array, columns=encoder.get_feature_names_out(['City']))
+final_df = pd.concat([df, encoded_df], axis=1)
+
+print("\nAfter One-Hot Encoding (Scikit-learn):")
+print(final_df)
+
+
+
+7: Write a program to Perform a t-test (one-sample, independent) on sample data and interpret the
+results.
+
+# Importing required libraries
+import numpy as np
+from scipy import stats
+
+# -------------------- ONE-SAMPLE T-TEST --------------------
+# Example: Test if the average score of a sample differs from the population mean (50)
+sample_scores = [52, 49, 47, 51, 53, 50, 48, 54, 49, 52]
+population_mean = 50
+
+# Perform one-sample t-test
+t_statistic, p_value = stats.ttest_1samp(sample_scores, population_mean)
+
+print("----- One-Sample t-Test -----")
+print(f"T-statistic: {t_statistic:.4f}")
+print(f"P-value: {p_value:.4f}")
+
+# Interpretation
+alpha = 0.05  # significance level
+if p_value < alpha:
+    print("Result: Reject the null hypothesis (Sample mean is significantly different).")
+else:
+    print("Result: Fail to reject the null hypothesis (No significant difference).")
+
+
+# -------------------- INDEPENDENT TWO-SAMPLE T-TEST --------------------
+# Example: Compare two groups - Class A and Class B scores
+class_A = [78, 85, 82, 90, 88, 76, 81, 85]
+class_B = [80, 83, 79, 75, 77, 82, 78, 81]
+
+# Perform independent t-test
+t_statistic2, p_value2 = stats.ttest_ind(class_A, class_B)
+
+print("\n----- Independent Two-Sample t-Test -----")
+print(f"T-statistic: {t_statistic2:.4f}")
+print(f"P-value: {p_value2:.4f}")
+
+# Interpretation
+if p_value2 < alpha:
+    print(" Result: Reject the null hypothesis (Means of both groups are significantly different).")
+else:
+    print("Result: Fail to reject the null hypothesis (No significant difference between groups).")
+	
+practical 6 t test	
+# Importing required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import skew, kurtosis
+# Sample dataset - Create a DataFrame
+data = {
+ 'Age': [23, 26, 30, 22, 29, 35, 32, 40, 34, 36, 38, 45, 50, 60, 28],
+ 'Salary': [20000, 25000, 30000, 22000, 27000, 40000, 35000, 45000, 37000, 38000, 39000, 
+50000, 
+ 55000, 60000, 32000]
+}
+df = pd.DataFrame(data)
+# Step 1: Plot histograms to visualize data distribution
+plt.figure(figsize=(12, 5))
+# Histogram for 'Age'
+plt.subplot(1, 2, 1)
+sns.histplot(df['Age'], bins=10, kde=True, color='blue')
+plt.title('Histogram of Age')
+plt.xlabel('Age')
+plt.ylabel('Frequency')
+# Histogram for 'Salary'
+plt.subplot(1, 2, 2)
+sns.histplot(df['Salary'], bins=10, kde=True, color='green')
+plt.title('Histogram of Salary')
+plt.xlabel('Salary')
+plt.ylabel('Frequency')
+plt.tight_layout()
+plt.show()
+
+# Step 2: Calculate skewness and kurtosis
+age_skewness = skew(df['Age'])
+salary_skewness = skew(df['Salary'])
+age_kurtosis = kurtosis(df['Age'])
+salary_kurtosis = kurtosis(df['Salary'])
+# Print skewness and kurtosis values
+print("Skewness and Kurtosis of the Dataset:")
+print(f"Skewness of Age: {age_skewness:.4f}")
+print(f"Skewness of Salary: {salary_skewness:.4f}")
+print(f"Kurtosis of Age: {age_kurtosis:.4f}")
+print(f"Kurtosis of Salary: {salary_kurtosis:.4f}")
